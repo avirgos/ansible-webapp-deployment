@@ -1,0 +1,11 @@
+---
+- name: Deploy webapp
+  hosts: webapp
+  tasks:
+    - name: Load SSH secrets
+      ansible.builtin.include_vars:
+        file: group_vars/webapp/vault.yml
+  roles:
+    - python
+    - mysql-db
+    - flask-web

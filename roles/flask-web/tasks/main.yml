@@ -1,0 +1,22 @@
+---
+- name: Install Flask
+  ansible.builtin.pip:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - flask
+
+- name: Copy `app.py` file
+  ansible.builtin.copy:
+    src: "./app.py"
+    dest: "/opt/app.py"
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Start web server
+  ansible.builtin.shell: |
+    FLASK_APP=/opt/app.py nohup flask run --host=0.0.0.0 &
+  args:
+    executable: /bin/bash
+  changed_when: false

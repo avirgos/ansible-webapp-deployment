@@ -1,0 +1,59 @@
+---
+- ansible.builtin.include_tasks: load-secrets.yml
+
+- name: Install MySQL database
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - mysql-server
+    - mysql-client
+
+- name: Start MySQL service
+  ansible.builtin.command: /etc/init.d/mysql start
+  changed_when: false
+
+- name: Create `.my.cnf` file
+  ansible.builtin.copy:
+    dest: "/root/.my.cnf"
+    content: |
+      [client]
+      user=root
+      password={{ mysql_root_password }}
+      host=localhost
+      socket=/var/run/mysqld/mysqld.sock
+    owner: root
+    group: root
+    mode: '0600'
+
+- name: Install MySQL python module
+  ansible.builtin.pip:
+    name: pymysql
+    state: present
+
+- name: Create app database
+  community.mysql.mysql_db:
+    name: "{{ db_name }}"
+    state: present
+
+- name: Create database user
+  community.mysql.mysql_user:
+    name: "{{ db_user }}"
+    password: "{{ mysql_root_password }}"
+    priv: '*.*:ALL'
+    state: present
+    host: '%'
+    column_case_sensitive: false
+
+- name: Create `employees` table
+  community.mysql.mysql_query:
+    query: |
+      CREATE TABLE IF NOT EXISTS employee_db.employees (
+        id INT PRIMARY KEY AUTO_INCREMENT,
+        name VARCHAR(100)
+      );
+
+- name: Insert sample data into `employees` table
+  community.mysql.mysql_query:
+    query: |
+      INSERT INTO employee_db.employees (name) VALUES ('John'), ('Antoine');
