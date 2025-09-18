@@ -1,12 +1,10 @@
 ---
-- name: Install Flask
+- name: Install Flask package
   ansible.builtin.pip:
-    name: "{{ item }}"
+    name: flask
     state: present
-  with_items:
-    - flask
 
-- name: Copy `app.py` file
+- name: Copy app.py file
   ansible.builtin.copy:
     src: "./app.py"
     dest: "/opt/app.py"
@@ -14,9 +12,27 @@
     group: root
     mode: '0644'
 
-- name: Start web server
+- name: Copy environment file
+  ansible.builtin.copy:
+    src: "../../.env"
+    dest: "/opt/.env"
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Stop Flask server if running
+  ansible.builtin.command: pkill -f "flask"
+  register: result
+  ignore_errors: true
+  changed_when: result.rc == 0
+  failed_when: result.rc not in [0, 1]
+
+- name: Start Flask server with environment variables
   ansible.builtin.shell: |
-    FLASK_APP=/opt/app.py nohup flask run --host=0.0.0.0 &
+    set -a
+    source /opt/.env
+    set +a
+    FLASK_APP=/opt/app.py nohup flask run --host=0.0.0.0 > /opt/flask.log 2>&1 &
   args:
     executable: /bin/bash
-  changed_when: false
+  changed_when: true
