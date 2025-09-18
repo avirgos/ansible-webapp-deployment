@@ -7,7 +7,7 @@ Deploy, on multiple hosts, a simple web application (Flask + MySQL database) usi
 ## Architecture
 
 <div align="center">
-    <img src="assets/img/diagram-ansible-webapp-deployment.png" alt="vulndrake-icon" width="700" height="700"/>
+    <img src="assets/img/diagram-ansible-webapp-deployment.png" alt="diagram-ansible-webapp-deployment" width="700" height="700"/>
 </div>
 
 ## Deployment preparation
