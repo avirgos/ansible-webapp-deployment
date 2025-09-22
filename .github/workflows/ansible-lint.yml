@@ -1,0 +1,23 @@
+name: Ansible playbook linting
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      
+      - name: Python setup
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.x'
+      
+      - name: Install Ansible and `ansible-lint`
+        run: pip install ansible ansible-lint
+
+      - name: Run `ansible-lint`
+        run: ansible-lint --offline *.yml
