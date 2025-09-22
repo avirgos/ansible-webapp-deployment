@@ -22,10 +22,10 @@
 
 - name: Stop Flask server if running
   ansible.builtin.command: pkill -f "flask"
-  register: result
+  register: flask_web_stop_result
   ignore_errors: true
-  changed_when: result.rc == 0
-  failed_when: result.rc not in [0, 1]
+  changed_when: flask_web_stop_result.rc == 0
+  failed_when: flask_web_stop_result.rc not in [0, 1]
 
 - name: Start Flask server with environment variables
   ansible.builtin.shell: |
