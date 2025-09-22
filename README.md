@@ -44,12 +44,12 @@ docker run -d --name webapp2 --env-file .env -p 2222:22 -p 5001:5000 webapp
 > **⚠️ Warning**  
 > Some sensitive variables used in this project are encrypted using Ansible Vault in `vault.yml` files:  
 > - [`group_vars/webapp/vault.yml`](https://github.com/avirgos/ansible-webapp-deployment/blob/master/group_vars/webapp/vault.yml)  
-> - [`roles/mysql-db/vars/vault.yml`](https://github.com/avirgos/ansible-webapp-deployment/blob/master/roles/mysql-db/vars/vault.yml)  
+> - [`roles/mysql_db/vars/vault.yml`](https://github.com/avirgos/ansible-webapp-deployment/blob/master/roles/mysql_db/vars/vault.yml)  
 >  
 > To modify these sensitive variables, use the `ansible-vault` command to edit or re-encrypt the files, ensuring to use the correct vault password:
 > ```bash
 > ansible-vault edit group_vars/webapp/vault.yml --vault-password-file .vault_pass.txt
-> ansible-vault edit roles/mysql-db/vars/vault.yml --vault-password-file .vault_pass.txt
+> ansible-vault edit roles/mysql_db/vars/vault.yml --vault-password-file .vault_pass.txt
 > ```
 
 Execute the playbook with the following command:

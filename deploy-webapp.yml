@@ -7,5 +7,5 @@
         file: group_vars/webapp/vault.yml
   roles:
     - python
-    - mysql-db
-    - flask-web
+    - mysql_db
+    - flask_web

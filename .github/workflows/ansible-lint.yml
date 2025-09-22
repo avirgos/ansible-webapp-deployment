@@ -23,4 +23,4 @@ jobs:
         run: echo "." > .vault_pass.txt
 
       - name: Run `ansible-lint`
-        run: ansible-lint --offline --exclude group_vars/webapp/vault.yml --exclude roles/mysql-db/vars/vault.yml *.yml
+        run: ansible-lint --offline --exclude .github *.yml

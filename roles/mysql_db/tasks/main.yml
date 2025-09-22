@@ -20,7 +20,7 @@
     content: |
       [client]
       user=root
-      password={{ mysql_root_password }}
+      password={{ mysql_db_root_password }}
       host=localhost
       socket=/var/run/mysqld/mysqld.sock
     owner: root
@@ -34,13 +34,13 @@
 
 - name: Create app database
   community.mysql.mysql_db:
-    name: "{{ db_name }}"
+    name: "{{ mysql_db_db_name }}"
     state: present
 
 - name: Create database user
   community.mysql.mysql_user:
-    name: "{{ db_user }}"
-    password: "{{ mysql_root_password }}"
+    name: "{{ mysql_db_db_user }}"
+    password: "{{ mysql_db_root_password }}"
     priv: '*.*:ALL'
     state: present
     host: '%'
