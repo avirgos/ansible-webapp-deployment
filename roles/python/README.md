@@ -1,38 +1,101 @@
-Role Name
-=========
+<!-- DOCSIBLE START -->
 
-A brief description of the role goes here.
+# 📃 Role overview
 
-Requirements
-------------
+## python
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
 
-Role Variables
---------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+Description: Install Python dependencies for Flask web application
 
-Dependencies
-------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+| Field                | Value           |
+|--------------------- |-----------------|
+| Readme update        | 22/09/2025 |
 
-Example Playbook
-----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
 
-License
--------
 
-BSD
 
-Author Information
-------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+
+
+
+
+
+
+
+### Tasks
+
+
+#### File: tasks/main.yml
+
+| Name | Module | Has Conditions |
+| ---- | ------ | -------------- |
+| Install dependencies | ansible.builtin.apt | False |
+
+
+## Task Flow Graphs
+
+
+
+### Graph for main.yml
+
+```mermaid
+flowchart TD
+Start
+classDef block stroke:#3498db,stroke-width:2px;
+classDef task stroke:#4b76bb,stroke-width:2px;
+classDef includeTasks stroke:#16a085,stroke-width:2px;
+classDef importTasks stroke:#34495e,stroke-width:2px;
+classDef includeRole stroke:#2980b9,stroke-width:2px;
+classDef importRole stroke:#699ba7,stroke-width:2px;
+classDef includeVars stroke:#8e44ad,stroke-width:2px;
+classDef rescue stroke:#665352,stroke-width:2px;
+
+  Start-->|Task| Install_dependencies0[install dependencies]:::task
+  Install_dependencies0-->End
+```
+
+
+## Playbook
+
+```yml
+---
+- name: Install dependencies
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - python
+    - python-setuptools
+    - python-dev
+    - build-essential
+    - python3-pip
+
+```
+## Playbook graph
+```mermaid
+flowchart TD
+```
+
+## Author Information
+Antoine Virgos (@avirgos)
+
+#### License
+
+MIT
+
+#### Minimum Ansible Version
+
+2.1
+
+#### Platforms
+
+No platforms specified.
+
+#### Dependencies
+
+No dependencies specified.
+<!-- DOCSIBLE END -->
