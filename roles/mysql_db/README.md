@@ -46,21 +46,21 @@ Description: Deploy a MySQL database
 
 | Name | Module | Has Conditions |
 | ---- | ------ | -------------- |
-| Load MySQL secrets | ansible.builtin.include_vars | False |
+| Load MySQL secrets | `ansible.builtin.include_vars` | False |
 
 #### File: `tasks/main.yml`
 
 | Name | Module | Has Conditions |
 | ---- | ------ | -------------- |
-| Load MySQL secrets | ansible.builtin.include_tasks | False |
-| Install MySQL database | ansible.builtin.apt | False |
-| Start MySQL service | ansible.builtin.command | False |
-| Create `.my.cnf` file | ansible.builtin.copy | False |
-| Install MySQL python module | ansible.builtin.pip | False |
-| Create app database | community.mysql.mysql_db | False |
-| Create database user | community.mysql.mysql_user | False |
-| Create `employees` table | community.mysql.mysql_query | False |
-| Insert sample data into `employees` table | community.mysql.mysql_query | False |
+| Load MySQL secrets | `ansible.builtin.include_tasks` | False |
+| Install MySQL database | `ansible.builtin.apt` | False |
+| Start MySQL service | `ansible.builtin.command` | False |
+| Create `.my.cnf` file | `ansible.builtin.copy` | False |
+| Install MySQL python module | `ansible.builtin.pip` | False |
+| Create app database | `community.mysql.mysql_db` | False |
+| Create database user | `community.mysql.mysql_user` | False |
+| Create `employees` table | `community.mysql.mysql_query` | False |
+| Insert sample data into `employees` table | `community.mysql.mysql_query` | False |
 
 
 ## Task Flow Graph

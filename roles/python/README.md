@@ -30,7 +30,7 @@ Description: Install Python dependencies for Flask web application
 
 | Name | Module | Has Conditions |
 | ---- | ------ | -------------- |
-| Install dependencies | ansible.builtin.apt | False |
+| Install dependencies | `ansible.builtin.apt` | False |
 
 
 ## Task Flow Graph

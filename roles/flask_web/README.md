@@ -30,11 +30,11 @@ Description: Deploy Flask web server
 
 | Name | Module | Has Conditions |
 | ---- | ------ | -------------- |
-| Install Flask package | ansible.builtin.pip | False |
-| Copy app.py file | ansible.builtin.copy | False |
-| Copy environment file | ansible.builtin.copy | False |
-| Stop Flask server if running | ansible.builtin.command | False |
-| Start Flask server with environment variables | ansible.builtin.shell | False |
+| Install Flask package | `ansible.builtin.pip` | False |
+| Copy app.py file | `ansible.builtin.copy` | False |
+| Copy environment file | `ansible.builtin.copy` | False |
+| Stop Flask server if running | `ansible.builtin.command` | False |
+| Start Flask server with environment variables | `ansible.builtin.shell` | False |
 
 
 ## Task Flow Graph
