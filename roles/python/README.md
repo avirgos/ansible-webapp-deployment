@@ -8,12 +8,9 @@
 
 Description: Install Python dependencies for Flask web application
 
-
 | Field                | Value           |
 |--------------------- |-----------------|
-| Readme update        | 22/09/2025 |
-
-
+| `README.md` update        | 22/09/2025 |
 
 
 
@@ -29,18 +26,18 @@ Description: Install Python dependencies for Flask web application
 ### Tasks
 
 
-#### File: tasks/main.yml
+#### File: `tasks/main.yml`
 
 | Name | Module | Has Conditions |
 | ---- | ------ | -------------- |
 | Install dependencies | ansible.builtin.apt | False |
 
 
-## Task Flow Graphs
+## Task Flow Graph
 
 
 
-### Graph for main.yml
+### Graph for `main.yml`
 
 ```mermaid
 flowchart TD
@@ -59,28 +56,8 @@ classDef rescue stroke:#665352,stroke-width:2px;
 ```
 
 
-## Playbook
-
-```yml
----
-- name: Install dependencies
-  ansible.builtin.apt:
-    name: "{{ item }}"
-    state: present
-  with_items:
-    - python
-    - python-setuptools
-    - python-dev
-    - build-essential
-    - python3-pip
-
-```
-## Playbook graph
-```mermaid
-flowchart TD
-```
-
 ## Author Information
+
 Antoine Virgos (@avirgos)
 
 #### License

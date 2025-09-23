@@ -8,12 +8,9 @@
 
 Description: Deploy Flask web server
 
-
 | Field                | Value           |
 |--------------------- |-----------------|
-| Readme update        | 22/09/2025 |
-
-
+| `README.md` update        | 22/09/2025 |
 
 
 
@@ -29,7 +26,7 @@ Description: Deploy Flask web server
 ### Tasks
 
 
-#### File: tasks/main.yml
+#### File: `tasks/main.yml`
 
 | Name | Module | Has Conditions |
 | ---- | ------ | -------------- |
@@ -40,11 +37,11 @@ Description: Deploy Flask web server
 | Start Flask server with environment variables | ansible.builtin.shell | False |
 
 
-## Task Flow Graphs
+## Task Flow Graph
 
 
 
-### Graph for main.yml
+### Graph for `main.yml`
 
 ```mermaid
 flowchart TD
@@ -67,55 +64,8 @@ classDef rescue stroke:#665352,stroke-width:2px;
 ```
 
 
-## Playbook
-
-```yml
----
-- name: Install Flask package
-  ansible.builtin.pip:
-    name: flask
-    state: present
-
-- name: Copy app.py file
-  ansible.builtin.copy:
-    src: "./app.py"
-    dest: "/opt/app.py"
-    owner: root
-    group: root
-    mode: '0644'
-
-- name: Copy environment file
-  ansible.builtin.copy:
-    src: "../../.env"
-    dest: "/opt/.env"
-    owner: root
-    group: root
-    mode: '0644'
-
-- name: Stop Flask server if running
-  ansible.builtin.command: pkill -f "flask"
-  register: flask_web_stop_result
-  ignore_errors: true
-  changed_when: flask_web_stop_result.rc == 0
-  failed_when: flask_web_stop_result.rc not in [0, 1]
-
-- name: Start Flask server with environment variables
-  ansible.builtin.shell: |
-    set -a
-    source /opt/.env
-    set +a
-    FLASK_APP=/opt/app.py nohup flask run --host=0.0.0.0 > /opt/flask.log 2>&1 &
-  args:
-    executable: /bin/bash
-  changed_when: true
-
-```
-## Playbook graph
-```mermaid
-flowchart TD
-```
-
 ## Author Information
+
 Antoine Virgos (@avirgos)
 
 #### License
