@@ -27,8 +27,8 @@ Description: Deploy a MySQL database
 
 | Var          | Type         | Value       |
 |--------------|--------------|-------------|
-| [`mysql_db_db_name`](defaults/main.yml#L2)   | str | `employee_db` |    
-| [`mysql_db_db_user`](defaults/main.yml#L3)   | str | `db_user` |    
+| [`mysql_db_db_name`](defaults/main.yml#L2)   | `str` | `employee_db` |    
+| [`mysql_db_db_user`](defaults/main.yml#L3)   | `str` | `db_user` |    
 
 ### Vars
 
@@ -37,7 +37,7 @@ Description: Deploy a MySQL database
 
 | Var          | Type         | Value       |
 |--------------|--------------|-------------|
-| [`mysql_db_root_password`](vars/vault.yml#L2)   | str | `ENCRYPTED_WITH_ANSIBLE_VAULT` |    
+| [`mysql_db_root_password`](vars/vault.yml#L2)   | `str` | `ENCRYPTED_WITH_ANSIBLE_VAULT` |    
 
 ### Tasks
 
